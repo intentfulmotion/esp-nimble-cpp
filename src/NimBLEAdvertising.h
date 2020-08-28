@@ -89,6 +89,7 @@ public:
     void setScanResponse(bool);
     void advCompleteCB();
     bool isAdvertising();
+    void setName(const char* name);
 
 private:
     friend class NimBLEDevice;
