@@ -111,6 +111,12 @@ public:
     std::string       toString();
     uint16_t          getHandle();
     size_t            getSubscribedCount();
+    NimBLEService*  getService();
+    std::vector<std::pair<uint16_t, uint16_t>>  m_subscribedVec;
+    uint16_t                       m_properties;
+    uint16_t                       m_handle;
+    NimBLECharacteristicCallbacks* m_pCallbacks;
+    ble_task_data_t                *m_pTaskData;
 
 private:
 
@@ -130,24 +136,17 @@ private:
 
     ~NimBLECharacteristic();
 
-    NimBLEService*  getService();
     uint16_t        getProperties();
     void            setSubscribe(struct ble_gap_event *event);
     static int      handleGapEvent(uint16_t conn_handle, uint16_t attr_handle,
                                    struct ble_gatt_access_ctxt *ctxt, void *arg);
 
     NimBLEUUID                     m_uuid;
-    uint16_t                       m_handle;
-    uint16_t                       m_properties;
-    NimBLECharacteristicCallbacks* m_pCallbacks;
     NimBLEService*                 m_pService;
     std::string                    m_value;
     std::vector<NimBLEDescriptor*> m_dscVec;
-    ble_task_data_t                *m_pTaskData;
     portMUX_TYPE                   m_valMux;
     time_t                         m_timestamp;
-
-    std::vector<std::pair<uint16_t, uint16_t>>  m_subscribedVec;
 }; // NimBLECharacteristic
 
 

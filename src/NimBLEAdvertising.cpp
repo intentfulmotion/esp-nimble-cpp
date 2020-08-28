@@ -149,6 +149,11 @@ void NimBLEAdvertising::setScanResponse(bool set) {
     m_scanResp = set;
 } // setScanResponse
 
+void NimBLEAdvertising::setName(const char* name) {
+    m_advData.name = (uint8_t *)name;
+    m_advData.name_len = strlen(name);
+}
+
 
 /**
  * @brief Set the filtering for the scan filter.
